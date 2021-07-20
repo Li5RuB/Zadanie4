@@ -77,9 +77,16 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, isPersistent: false, lockoutOnFailure: false);
+               
                 if (result.Succeeded)
                 {
                     var user = _userManager.Users.FirstOrDefault(u => u.UserName == Input.UserName);
+                    if (user.isBaned)
+                    {
+                        _signInManager.SignOutAsync();
+                        ModelState.AddModelError(string.Empty, "User account blocked.");
+                        return RedirectToPage("./Lockout");
+                    }
                     user.DateOfLastLogin = DateTime.Now;
                     var identityresult = await _userManager.UpdateAsync(user);
                     
@@ -90,6 +97,7 @@ namespace WebApplication1.Areas.Identity.Pages.Account
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
+                
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
