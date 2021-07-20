@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8IBG3PH0+0S58cT1ErceHgAAAAACAAAAAAAQZgAAAAEAACAAAABdNqgzWyasF31HflKGBMf0+s5WxisW27CunnfwKv0t4AAAAAAOgAAAAAIAACAAAADfnqiU91pDXtFgBnnvI7HCJ84C6HmxOOpeF1f/OxsCG4AAAADEjByIcQ6kjte0iPJbEjbIEDYQk5s2yj19+fHMC79XpN5K8jP5q6p3GODJGqq7VYHP0wMkMBKMpuLT5rMyurWQaUykASHJ6yfeuAjJ8fqpHk1nac7uV/dJWaQ9nMS5e3rL9WWUwS+GiO7AW+4gYHE7LWzpjg54gIIrNN63bzX5dUAAAACObaMXEMmBiV3BFTo8uf4TjJ7dYAYq08FTnHfSggpYsrATRPPyTEDi4Yr+YBRu9IserhD7MJR9UGeN2KmmwZk8</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:webapplication1dbserver123.database.windows.net,1433%3bInitial Catalog=WebApplication1_db%3bUser Id=Li5rub%40webapplication1dbserver123%3bPassword=Ghbdtn11</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="WebApplication1.Data.ApplicationDbContext">
+      <Value>Data Source=tcp:webapplication1dbserver123.database.windows.net,1433%3bInitial Catalog=WebApplication1_db%3bUser Id=Li5rub%40webapplication1dbserver123%3bPassword=Ghbdtn11</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
