@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using WebApplication1.Areas.Identity;
+@model IQueryable<MyIdentityuser>
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+    <p>
+    <div class="marginButton">
+        <input type="button" id="Block" value="Block" />
+        <button class="btn btn-primary" id="Delete" value="Delete">
+            <i class="fa fa-trash-o fa-lg"></i>
+        </button>
+        <button class="btn btn-primary" id="Unblock" value="Unblock">
+            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+        </button>
+    </div>
+</p>
+@(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => Html.CheckBox("Check_" + model.Id)).Titled(Html.CheckBox("CheckAll"));
+        columns.Add(model => model.Id).Titled("Id").Css("text-center");
+        columns.Add(model => model.UserName).Titled("Name");
+        columns.Add(model => model.Email).Titled("Email");
+        columns.Add(model => model.DateOfLastLogin).Titled("Last login date");
+        columns.Add(model => model.DateOfReg).Titled("Registration date");
+        columns.Add(model => model.isBaned).Titled("Status").RenderedAs(model => model.isBaned == true ? "Baned" : "Not banned");
+    })
+)
+<script>
+    document.getElementById("CheckAll").addEventListener("change", function () {
+        document.querySelectorAll("[id^='Check_'").forEach(checkbox => checkbox.checked = this.checked);
+    });
+</script>
+
+<script>
+    function arrayselect() {
+        var statusArr = document.querySelectorAll("[id^='Check_'");
+        var checkedid = [];
+        for (i = 0; i < statusArr.length; i++) {
+            if (statusArr[i].checked == true) {
+                var id = statusArr[i].id.slice(6)
+                checkedid.push(id);
+            }
+        }
+        return checkedid;
+    }
+    $("#Delete").on('click', function () {
+        var checkedid = arrayselect();
+        $.ajax({
+            type: 'post',
+            url: 'UserGrid/Delete',
+            data: { values: checkedid },
+            success: (result) => {
+                location.reload()
+            }
+        })
+    })
+    $("#Block").on('click', function () {
+        var checkedid = arrayselect();
+        $.ajax({
+            type: 'post',
+            url: 'UserGrid/Block',
+            data: { values: checkedid },
+            success: (result) => {
+                location.reload()
+            }
+        })
+    })
+    $("#Unblock").on('click', function () {
+        var checkedid = arrayselect();
+        $.ajax({
+            type: 'post',
+            url: 'UserGrid/Unblock',
+            data: { values: checkedid },
+            success: (result) => {
+                location.reload()
+            }
+        })
+    })
+</script>
+</body>
