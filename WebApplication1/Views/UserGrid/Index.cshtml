@@ -9,15 +9,18 @@
 </head>
 <body>
     <p>
-    <div class="marginButton">
-        <input type="button" id="Block" value="Block" />
-        <button class="btn btn-primary" id="Delete" value="Delete">
-            <i class="fa fa-trash-o fa-lg"></i>
-        </button>
-        <button class="btn btn-primary" id="Unblock" value="Unblock">
-            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-        </button>
-    </div>
+        <div class="text-center">
+            <div class="marginButton">
+                <input type="button" id="Block" value="Block" />
+                <button class="btn btn-primary" id="Unblock" value="Unblock">
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                </button>
+                <button class="btn btn-primary" id="Delete" value="Delete">
+                    <i class="fa fa-trash-o fa-lg"></i>
+                </button>
+
+            </div>
+            </div>
 </p>
 @(Html
     .Grid(Model)
